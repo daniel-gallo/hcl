@@ -2,6 +2,8 @@ import numpy as np
 
 
 def godunov(T, X, B, dt, dx, f, f_prime):
+    B[0, :] = B[0, 0]
+    B[-1, :] = B[-1, 0]
     for t in range(1, len(T)):
         f_primes = f_prime(B[:, t - 1])
         fs = np.zeros(len(X) - 1)
